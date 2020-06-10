@@ -6,14 +6,20 @@
     </p>
     <p>{{count}}</p>
     <button @click="handleClick">点击我</button>
+    <p>{{message | capitalize}}</p>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import {mapGetters} from 'vuex'
+// import { mapState } from 'vuex'
+// import {mapGetters} from 'vuex'
 export default {
   name: 'HelloWorld',
+  data: function() {
+    return {
+      message: 'message'
+    }
+  },
   props: {
     msg: String
   },
@@ -25,16 +31,23 @@ export default {
   // computed: mapState({
   //   count: state => state.count,
   // }),
-  computed: {
-    ...mapGetters([
-      'doneTodeCount',
-      'anotherGetter',
+  // computed: {
+  //   ...mapGetters([
+  //     'doneTodeCount',
+  //     'anotherGetter',
       
-    ]),
-    //如果你想将一个getter属性另取一个名字，使用对象形式：
-    ...mapGetters({
-      doneCount: 'doneTodoCount'
-    })
+  //   ]),
+  //   //如果你想将一个getter属性另取一个名字，使用对象形式：
+  //   ...mapGetters({
+  //     doneCount: 'doneTodoCount'
+  //   })
+  // },
+  filters: {
+    capitalize: function(value) {
+      if(!value) return ''
+      value = value.toString()
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    }
   },
   methods: {
     handleClick: function() {
