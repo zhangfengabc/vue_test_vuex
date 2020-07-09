@@ -5,11 +5,25 @@
             <li @click="handleRedirect">平板</li>
             <li @click="handleAlias">电脑</li>
         </ul>
+        <p>{{firstName}}----{{lastName}}-----{{year}}</p>
+        <p>
+            <button @click="btn1">按钮1</button>
+            <button @click="btn2">按钮2</button>
+        </p>
     </div>
 </template>
 <script>
+// import { firstName, lastName, year } from '../js/a'
+import { firstName as fN, lastName as lN, year, stream1, stream2 } from '../js/a'
 export default {
     name: 'bar',
+    data: () => {
+        return {
+            firstName: fN ,
+            lastName: lN,
+            year: year
+        }
+    },
     methods: {
         handleClick: function() {
             this.$router.push({ name: 'user', query: { id: 56 }})
@@ -19,6 +33,22 @@ export default {
         },
         handleAlias: function() {
             this.$router.push('b')
+        },
+        btn1: () => {
+            stream1()
+            class Point {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                }
+                toString() {
+                    return '(' + this.x + this.y + ')'
+                }
+            }
+            new Point()
+        },
+        btn2: () => {
+            stream2()
         }
     }
 }

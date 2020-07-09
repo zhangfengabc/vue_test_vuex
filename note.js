@@ -195,9 +195,120 @@ actions: {
 }
 
 
+//webpack-dev-server是一个基于Express的本地开发服务器
+//在开发中，我们希望边写代码，边看到代码的执行情况，webpack-dev-server提供自动刷新页面的功能可以满足我们的需求。
+//webpack-dev-server支持两种模式的自动刷新页面。
+
+//iframe模式，页面被放到一个iframe内，当发生变化时，会重新加载。
+//inline模式，将webpack-dev-server的重载代码添加到产出的bundle中。
+
+//两种模式都支持模块热替换。模块热替换的好处是只替换更新的部分，而不是整个页面都重新加载。
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const config = {
+    output: {
+
+    },
+    modules:{
+        rules:[{
+            test: /\.txt$/,
+            use: 'raw-loader'
+        }]
+    }
+}
+
+
+//想要使用一个插件，你只需require()它，然后把它添加到plugins数组中。
+//多数插件可以通过选项（option）自定义。
+//你也可以在一个配置文件中因为不同目的而多次使用同一个插件，这时需要使用new操作符来创建他的一个实例
+
+plugin:[
+    new HtmlWebpackPlugin({
+        template: './src/index.html'
+    })
+]
+
+
+const config = {
+    entry: ''
+}
+
+
+const config = {
+    entry: {
+        app: '',
+        vendors: ''
+    },
+    output: {
+        filename: '[name].js',
+        path: ''
+    }
+}
+
+
+
+
+
+const config = {
+    module:{
+        rules:[{
+            test: /\.css$/,
+            use: [
+                {
+                    loader: 'style-loader'
+                },
+                {
+                    loader: 'css-loader',
+                    options: {
+                        modules: true
+                    }
+                }
+            ]
+        }]
+    }
+}
+
+
+
+
+
+
+let webpack = require('webpack');
+const config = {
+    module:{
+        rules:[{
+            test:/\.css$/,
+            use: [{
+                loader: 'style-loader',
+                options: {
+                    modules: true
+                }
+            }]
+        }]
+    },
+    plugins:[
+        new webpack.optimize.UglifyJsPlugin()
+    ]
+}
